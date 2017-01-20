@@ -3,8 +3,8 @@ import React from 'react';
 const User = ({name, screenName, profileImageUrl, handleClick}) => (
   <div style={styles.user}>
     <img src={profileImageUrl} style={styles.profileImageUrl}/>
-    <div>@{screenName}</div>
-    <div>{name}</div>
+    <div style={styles.screenName}>@{screenName}</div>
+    <div style={styles.name}>{name}</div>
   </div>
 );
 
@@ -12,13 +12,21 @@ const styles = {
   user: {
     display: 'flex',
     alignItems: 'center',
-    justifyConten: 'space-between',
     minHeight: 40,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   profileImageUrl: {
     borderRadius: '50%',
     height: 30,
     width: 30,
+    marginRight: 24,
+  },
+  screenName: {
+    marginRight: 24,
+  },
+  name: {
+    color: '#aaa',
   },
 };
 

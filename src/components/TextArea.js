@@ -21,10 +21,12 @@ const styles = {
   textArea: {
     boxSizing: 'border-box',
     width: '100%',
-    border: '1px solid gray',
+    border: '1px solid #e0e0e0',
+    borderRadius: 2,
     resize: 'none',
     padding: 8,
-    fontSize: 24,
+    fontSize: 16,
+    minHeight: 88,
   },
 };
 

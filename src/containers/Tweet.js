@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import TextArea from '../components/TextArea';
+import Counter from '../components/Counter';
 
 /* Gets the word in a sentence at a given character index */
 function getWordAt(string, index) {
@@ -44,15 +45,22 @@ class Tweet extends Component {
   render() {
     const {body, handleKeyDown} = this.props;
     return (
-      <TextArea
-        placeholder="What's happening?"
-        value={body}
-        handleKeyDown={handleKeyDown}
-        handleChange={this.handleChange}
-      />
+      <div>
+        <Counter value={body.length} max={140}/>
+        <TextArea
+          placeholder="What's happening?"
+          value={body}
+          handleKeyDown={handleKeyDown}
+          handleChange={this.handleChange}
+        />
+      </div>
     );
   }
 }
+
+Tweet.defaultProps = {
+  body: '',
+};
 
 Tweet.propTypes = {
   body: React.PropTypes.string,

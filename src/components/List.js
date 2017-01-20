@@ -22,9 +22,7 @@ const List = ({items, selected, renderItem, handleSelect}) => (
 );
 
 const styles = {
-  item: {
-    background: '#f5f5f5',
-  },
+  item: {},
   selectedItem: {
     background: '#ccc',
   },

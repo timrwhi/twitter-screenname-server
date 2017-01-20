@@ -12,6 +12,7 @@ const List = ({items, selected, renderItem, handleSelect}) => (
     {items.map((item, i) => (
       <div
         key={i}
+        className="list-item"
         onClick={() => handleSelect(item)}
         style={selected === i ? styles.selectedItem: styles.item}>
         {renderItem(item)}

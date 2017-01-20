@@ -13,3 +13,7 @@ Use `npm test` to run unit tests
 Use `npm run build-dev` to start development mode with watch
 
 Navigate to [http://localhost:3001/](http://localhost:3001/) to ensure the local server is responding to requests. If the URL loads, attempt to make a sample user search request http://localhost:3001/twitter/user/search?username=chicago
+
+##Implementation notes
+
+I chose not to use Redux since this app is simple enough to manage state in the top level component.

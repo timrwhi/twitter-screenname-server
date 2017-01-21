@@ -1,8 +1,8 @@
 import React from 'react';
 
-const User = ({name, screenName, profileImageUrl, handleClick}) => (
+const User = ({ name, screenName, profileImageUrl }) => (
   <div style={styles.user}>
-    <img src={profileImageUrl} style={styles.profileImageUrl}/>
+    <img src={profileImageUrl} style={styles.profileImageUrl} alt="Profile Img" />
     <div style={styles.screenName}>@{screenName}</div>
     <div style={styles.name}>{name}</div>
   </div>
@@ -28,6 +28,12 @@ const styles = {
   name: {
     color: '#aaa',
   },
+};
+
+User.defaultProps = {
+  name: '',
+  profileImageUrl: '',
+  screenName: '',
 };
 
 User.propTypes = {

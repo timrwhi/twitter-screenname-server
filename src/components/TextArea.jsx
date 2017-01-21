@@ -7,7 +7,7 @@ import React from 'react';
  *
  */
 
-const TextArea = ({handleChange, handleKeyDown, value, placeholder}) => (
+const TextArea = ({ handleChange, handleKeyDown, value, placeholder }) => (
   <textarea
     placeholder={placeholder}
     value={value}
@@ -30,10 +30,18 @@ const styles = {
   },
 };
 
+TextArea.defaultProps = {
+  handleChange: () => {},
+  handleKeyDown: () => {},
+  value: '',
+  placeholder: '',
+};
+
 TextArea.propTypes = {
   handleChange: React.PropTypes.func,
   handleKeyDown: React.PropTypes.func,
   value: React.PropTypes.string,
+  placeholder: React.PropTypes.string,
 };
 
 export default TextArea;

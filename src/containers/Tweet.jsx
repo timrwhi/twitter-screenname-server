@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import TextArea from '../components/TextArea';
 import Counter from '../components/Counter';
@@ -30,7 +30,7 @@ class Tweet extends Component {
   }
 
   /* Determine if user is editing a screen name on change, and call appropriate callbacks */
-  handleChange({value, selectionStart}) {
+  handleChange({ value, selectionStart }) {
     // Get the word being edited and handle the changes
     const word = getWordAt(value, selectionStart);
     const screenName = word.includes('@') && getScreenName(word);
@@ -43,10 +43,10 @@ class Tweet extends Component {
   }
 
   render() {
-    const {body, handleKeyDown} = this.props;
+    const { body, handleKeyDown } = this.props;
     return (
       <div>
-        <Counter value={body.length} max={140}/>
+        <Counter value={body.length} max={140} />
         <TextArea
           placeholder="What's happening?"
           value={body}
@@ -60,11 +60,16 @@ class Tweet extends Component {
 
 Tweet.defaultProps = {
   body: '',
+  handleKeyDown: () => {},
+  handleEditScreenName: () => {},
+  handleChange: () => {},
 };
 
 Tweet.propTypes = {
   body: React.PropTypes.string,
   handleKeyDown: React.PropTypes.func,
+  handleEditScreenName: React.PropTypes.func,
+  handleChange: React.PropTypes.func,
 };
 
 export default Tweet;

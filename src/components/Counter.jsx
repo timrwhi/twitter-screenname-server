@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Counter = ({value, max}) => (
+const Counter = ({ value, max }) => (
   <div style={styles.counter}>
     <div style={value > max ? styles.invalid : {}}>{value}</div>
     <div>/</div>
@@ -27,8 +27,8 @@ const styles = {
 };
 
 Counter.propTypes = {
-  value: React.PropTypes.number,
-  max: React.PropTypes.number,
+  value: React.PropTypes.number.isRequired,
+  max: React.PropTypes.number.isRequired,
 };
 
 export default Counter;

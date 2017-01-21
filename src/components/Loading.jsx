@@ -10,7 +10,7 @@ import React from 'react';
 const Loading = () => (
   <div style={styles.loading}>
     <div style={styles.spinner}>
-      <div style={styles.spinnerInner}></div>
+      <div style={styles.spinnerInner} />
     </div>
   </div>
 );
@@ -37,8 +37,8 @@ const styles = {
     left: 0,
     borderRadius: 80,
     boxShadow: '0 2px 0 0 #929292',
-    animation: 'spinner 0.7s linear infinite'
-  }
+    animation: 'spinner 0.7s linear infinite',
+  },
 };
 
 export default Loading;

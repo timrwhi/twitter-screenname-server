@@ -7,14 +7,14 @@ import React from 'react';
  *
  */
 
-const List = ({items, selected, renderItem, handleSelect}) => (
+const List = ({ items, selected, renderItem, handleSelect }) => (
   <div>
     {items.map((item, i) => (
       <div
         key={i}
         className="list-item"
         onClick={() => handleSelect(item)}
-        style={selected === i ? styles.selectedItem: styles.item}>
+        style={selected === i ? styles.selectedItem : styles.item}>
         {renderItem(item)}
       </div>
     ))}
@@ -35,7 +35,7 @@ List.defaultProps = {
 };
 
 List.propTypes = {
-  items: React.PropTypes.array,
+  items: React.PropTypes.arrayOf(React.PropTypes.object),
   selected: React.PropTypes.number,
   renderItem: React.PropTypes.func.isRequired,
   handleSelect: React.PropTypes.func,

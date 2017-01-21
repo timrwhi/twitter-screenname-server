@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import Loading from '../components/Loading';
 import List from '../components/List';
@@ -13,7 +13,7 @@ import User from './User';
 
 class SuggestedUsers extends Component {
   render() {
-    const {loading, users, selectedIndex, handleClickUser} = this.props;
+    const { loading, users, selectedIndex, handleClickUser } = this.props;
     return (
       <div>
         {loading && <Loading/>}
@@ -38,7 +38,8 @@ SuggestedUsers.defaultProps = {
   users: [],
   loading: false,
   selectedIndex: 0,
-  handleClickUser: () => {},
+  handleClickUser: () => {
+  },
 };
 
 SuggestedUsers.propTypes = {

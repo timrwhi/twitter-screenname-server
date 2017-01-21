@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import SuggestedUsers from './SuggestedUsers';
 import Tweet from './Tweet';
@@ -24,6 +24,7 @@ class ComposeTweet extends Component {
     this.handleSelectUser = this.handleSelectUser.bind(this);
     this.handleChangeTweet = this.handleChangeTweet.bind(this);
     this.handleKey = this.handleKey.bind(this);
+    this.handleEditScreenName = this.handleEditScreenName.bind(this);
 
     // Cache searches outside of this.state to prevent unnecessary renders
     this.cache = {};
@@ -38,26 +39,27 @@ class ComposeTweet extends Component {
 
     // Attempt to grab users from cache
     if (this.cache[query]) {
-      return this.setState({users: this.cache[query]});
+      this.setState({ users: this.cache[query] });
+      return;
     }
 
     // Set the state to "fetching" and do the request, set "fetching" state back when finished
-    this.setState({fetchingUsers: true});
+    this.setState({ fetchingUsers: true });
     fetch(`/twitter/user/search?username=${query}`)
       .then(res => res.json())
-      .then(({users}) => {
-        this.setState({users, fetchingUsers: false});
+      .then(({ users }) => {
+        this.setState({ users, fetchingUsers: false });
         this.cache[query] = users;
       });
   }
 
   /* Handle selecting a user from the suggestions */
   handleSelectUser(screenName) {
-    // Split the tweet into words, and replace the partial screen name with selected user's screen name
+    // Split the tweet into words, and replace the partial screen name with selected user's name
     const tweetBodyWords = this.state.tweetBody.split(' ');
     tweetBodyWords.splice(this.state.screenNameIndex, 1, `@${screenName}`);
     const tweetBody = tweetBodyWords.join(' ');
-    this.setState({tweetBody, screenNameIndex: -1, selectedSuggestionIndex: 0});
+    this.setState({ tweetBody, screenNameIndex: -1, selectedSuggestionIndex: 0 });
   }
 
   /* Hijack keystrokes inside the tweet, and act on the important ones */
@@ -69,7 +71,7 @@ class ComposeTweet extends Component {
       e.preventDefault();
 
       // Set the previous user selected so it gets highlighted
-      this.setState({selectedSuggestionIndex: this.state.selectedSuggestionIndex - 1})
+      this.setState({ selectedSuggestionIndex: this.state.selectedSuggestionIndex - 1 });
     }
 
     // Handle down arrow
@@ -77,7 +79,7 @@ class ComposeTweet extends Component {
       e.preventDefault();
 
       // Set the next user selected so it gets highlighted
-      this.setState({selectedSuggestionIndex: this.state.selectedSuggestionIndex + 1})
+      this.setState({ selectedSuggestionIndex: this.state.selectedSuggestionIndex + 1 });
     }
 
     // Handle enter
@@ -91,12 +93,12 @@ class ComposeTweet extends Component {
 
   /* Handle changing the body of a tweet */
   handleChangeTweet(tweetBody) {
-    this.setState({tweetBody, screenNameIndex: -1});
+    this.setState({ tweetBody, screenNameIndex: -1 });
   }
 
   /* Handle changes to a word that starts with "@" */
   handleEditScreenName(screenName, indexInBody) {
-    this.setState({screenNameIndex: indexInBody});
+    this.setState({ screenNameIndex: indexInBody });
     this.fetchUsers(screenName);
   }
 
@@ -108,7 +110,7 @@ class ComposeTweet extends Component {
           body={this.state.tweetBody}
           handleChange={this.handleChangeTweet}
           handleKeyDown={this.handleKey}
-          handleEditScreenName={(screenName, index) => this.handleEditScreenName(screenName, index)}
+          handleEditScreenName={this.handleEditScreenName}
         />
 
         {/* Show a list of suggested Twitter users if editing a screen name */}
@@ -129,7 +131,7 @@ const styles = {
   composeTweet: {
     maxWidth: 400,
     margin: '40px auto',
-  }
+  },
 };
 
 export default ComposeTweet;
